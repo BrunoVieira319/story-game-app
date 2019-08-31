@@ -1,11 +1,7 @@
 import React from 'react'
-import LoginContainer from './containers/LoginContainer'
 import { Form, Button, Col, Container, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 
-const Login = () => {
-    const login = LoginContainer.useContainer();
-
+const NewUser = () => {
     return (
         <Container>
             <Row style={{ marginTop: "250px" }}>
@@ -15,28 +11,19 @@ const Login = () => {
                             <Form.Label>Username</Form.Label>
                             <Form.Control 
                                 type="text" 
-                                placeholder="Enter username"
-                                onChange={login.handleName}
-                                value={login.name} />
+                                placeholder="Enter username" />
                         </Form.Group>
                         
                         <Form.Group controlId="formPassword">
                             <Form.Label>Password</Form.Label>
                             <Form.Control 
                                 type="password" 
-                                placeholder="Password" 
-                                value={login.password}
-                                onChange={login.handlePassword}/>
+                                placeholder="Password" />
                         </Form.Group>
                     </Form>
                 </Col>
             </Row>
             <Row>
-                <Col md={{ span: 6, offset: 6 }}>
-                    <Link to="/newUser">
-                        Não possuo uma conta
-                    </Link>
-                </Col>
             </Row>
             <Row>
                 <Col md={{ span: 6, offset: 3 }}>
@@ -48,4 +35,4 @@ const Login = () => {
         </Container>
     )
 }
-export default Login;
+export default NewUser;
