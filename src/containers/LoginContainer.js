@@ -18,8 +18,8 @@ const useForm = () => {
         name,
         handleName,
         handlePassword,
-    };
+    }
 };
 
-const LoginContainer = createContainer(useForm)
+const LoginContainer = createContainer(useForm);
 export default LoginContainer
