@@ -1,10 +1,16 @@
 import React from 'react'
-import containerProvider from '../ContainerProvider'
+import {Redirect} from 'react-router-dom'
+import provide from '../ContainerProvider'
 import NewUserContainer from '../containers/NewUserContainer'
 import {Form, Button, Col, Container, Row} from 'react-bootstrap'
 
 const NewUser = () => {
     const newUser = NewUserContainer.useContainer();
+
+    if (newUser.redirect) {
+        return <Redirect to="/home"/>
+    }
+
     return (
         <Container>
             <Row style={{marginTop: "250px"}}>
@@ -16,7 +22,11 @@ const NewUser = () => {
                                 type="text"
                                 placeholder="Enter username"
                                 value={newUser.username}
-                                onChange={newUser.handleUsername}/>
+                                onChange={newUser.handleUsername}
+                                isInvalid={newUser.messageInvalidUsername !== ""}/>
+                            <Form.Control.Feedback type="invalid">
+                                {newUser.messageInvalidUsername}
+                            </Form.Control.Feedback>
                         </Form.Group>
 
                         <Form.Group controlId="formPassword">
@@ -25,7 +35,8 @@ const NewUser = () => {
                                 type="password"
                                 placeholder="Password"
                                 value={newUser.password}
-                                onChange={newUser.handlePassword}/>
+                                onChange={newUser.handlePassword}
+                                isInvalid={newUser.messageInvalidPassword !== ""}/>
                         </Form.Group>
 
                         <Form.Group controlId="formConfirmPassword">
@@ -34,12 +45,18 @@ const NewUser = () => {
                                 type="password"
                                 placeholder="Confirm Password"
                                 value={newUser.confirmedPassword}
-                                onChange={newUser.handleConfirmedPassword}/>
+                                onChange={newUser.handleConfirmedPassword}
+                                isInvalid={newUser.messageInvalidPassword !== ""}/>
+                            <Form.Control.Feedback type="invalid">
+                                {newUser.messageInvalidPassword}
+                            </Form.Control.Feedback>
                         </Form.Group>
+
                     </Form>
-                </Col>
-                <Col md={{span: 6, offset: 3}}>
-                    <Button variant="primary" type="submit">
+                    <Button
+                        variant="primary"
+                        type="submit"
+                        onClick={newUser.saveUser}>
                         Sign Up
                     </Button>
                 </Col>
@@ -48,4 +65,4 @@ const NewUser = () => {
     )
 };
 
-export default containerProvider(NewUserContainer, NewUser)
+export default provide(NewUserContainer, NewUser)

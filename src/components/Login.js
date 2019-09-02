@@ -1,11 +1,16 @@
 import React from 'react'
+import {Redirect} from 'react-router-dom'
 import LoginContainer from '../containers/LoginContainer'
-import containerProvider from '../ContainerProvider'
+import provide from '../ContainerProvider'
 import {Form, Button, Col, Container, Row} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 
 const Login = () => {
     const login = LoginContainer.useContainer();
+
+    if (login.redirect) {
+        return <Redirect to="/home"/>
+    }
     return (
         <Container>
             <Row style={{marginTop: "250px"}}>
@@ -16,8 +21,8 @@ const Login = () => {
                             <Form.Control
                                 type="text"
                                 placeholder="Enter username"
-                                onChange={login.handleName}
-                                value={login.name}/>
+                                value={login.username}
+                                onChange={login.handleUsername}/>
                         </Form.Group>
                         <Form.Group controlId="formPassword">
                             <Form.Label>Password</Form.Label>
@@ -39,7 +44,10 @@ const Login = () => {
             </Row>
             <Row>
                 <Col md={{span: 6, offset: 3}}>
-                    <Button variant="primary" type="submit">
+                    <Button
+                        variant="primary"
+                        type="submit"
+                        onClick={login.sendCredentials}>
                         Sign In
                     </Button>
                 </Col>
@@ -48,4 +56,4 @@ const Login = () => {
     )
 };
 
-export default containerProvider(LoginContainer, Login)
+export default provide(LoginContainer, Login)
