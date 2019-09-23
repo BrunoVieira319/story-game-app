@@ -1,9 +1,10 @@
 import {useState} from 'react'
 import {createContainer} from 'unstated-next'
-import axios from "axios";
-import ServiceEndpoints from "../ServiceEndpoints";
+import axios from "axios"
+import ServiceEndpoints from "../ServiceEndpoints"
 
 const useForm = () => {
+    const [userId, setUserId] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     const [redirect, setRedirect] = useState(false);
@@ -25,11 +26,17 @@ const useForm = () => {
             }
         };
         axios.post(`${ServiceEndpoints.USER_SERVICE}/users/login`, credentials, headers)
-            .then(() => setRedirect(true))
+            .then(res => {
+                if (res.data.id !== undefined) {
+                    setRedirect(true);
+                    setUserId(res.data.id);
+                }
+            })
             .catch()
     };
 
     return {
+        userId,
         password,
         username,
         handleUsername,
