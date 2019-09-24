@@ -27,6 +27,7 @@ const useNewStory = () => {
 
     const saveNewStory = () => {
         const story = {title, creatorId: user.userId, cover, description};
+        console.log(user.username)
         const headers = {
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
@@ -45,7 +46,8 @@ const useNewStory = () => {
         handleDescription,
         handleCover,
         saveNewStory,
-        saved
+        saved,
+        ...user
     }
 };
 

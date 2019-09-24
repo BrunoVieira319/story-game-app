@@ -1,6 +1,7 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
 import {Container, Col, Row, Form, Button} from 'react-bootstrap'
+import LoginContainer from '../containers/LoginContainer'
 import NewStoryContainer from '../containers/NewStoryContainer'
 import provide from '../ContainerProvider'
 
@@ -54,4 +55,4 @@ const NewStory = () => {
     )
 };
 
-export default provide(NewStoryContainer, NewStory)
+export default provide(LoginContainer, provide(NewStoryContainer, NewStory))
