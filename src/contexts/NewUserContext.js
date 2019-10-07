@@ -1,9 +1,10 @@
-import {useState} from 'react'
-import {createContainer} from 'unstated-next'
+import React, {useState, createContext} from 'react'
 import ServiceEndpoints from '../ServiceEndpoints'
 import axios from 'axios'
 
-const useNewUser = () => {
+const NewUserContext = createContext({});
+
+const NewUserProvider = component => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmedPassword, setConfirmedPassword] = useState("");
@@ -53,19 +54,24 @@ const useNewUser = () => {
         }
     };
 
-    return {
-        username,
-        handleUsername,
-        password,
-        handlePassword,
-        confirmedPassword,
-        handleConfirmedPassword,
-        messageInvalidUsername,
-        messageInvalidPassword,
-        redirect,
-        saveUser
-    }
+    return (
+        <NewUserContext.Provider
+            value={{
+                username,
+                handleUsername,
+                password,
+                handlePassword,
+                confirmedPassword,
+                handleConfirmedPassword,
+                messageInvalidUsername,
+                messageInvalidPassword,
+                redirect,
+                saveUser
+            }}
+        >
+            {component.children}
+        </NewUserContext.Provider>
+    )
 };
 
-const NewUserContainer = createContainer(useNewUser);
-export default NewUserContainer
+export {NewUserContext, NewUserProvider}
