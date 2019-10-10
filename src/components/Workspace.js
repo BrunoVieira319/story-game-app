@@ -1,7 +1,7 @@
 import React from 'react'
-import {Container, Col, Row, CardDeck, CardGroup, Card} from "react-bootstrap"
+import {Container, Col, Row, Card} from "react-bootstrap"
+import {Link} from 'react-router-dom'
 import {WorkspaceContext, WorkspaceProvider} from "../contexts/WorkspaceContext";
-import AddImg from '../images/add-circle-green-512.png'
 
 const Workspace = () => {
     return (
@@ -10,18 +10,21 @@ const Workspace = () => {
                 {workspace =>
                     <Container style={{'marginTop': '30px'}}>
                         <Row>
-                            {
-                                workspace.stories.map((i, story) =>
-                                    <Col sm={4} key={i}>
-                                        <Card text="white">
-                                            <Card.Img style={{height: '200px', objectFit: 'contain'}}
+                            {workspace.stories.map((story, i) =>
+                                <Col sm={4} key={i}>
+                                    <Card bg="dark" text="white">
+                                        <Link to={`/story/${story.id}`}>
+                                            <Card.Img style={{height: '200px', objectFit: 'cover'}}
                                                       variant="top"
                                                       src={story.cover}/>
-                                        </Card>
-                                    </Col>
-                                )
-                            }
-
+                                        </Link>
+                                        <Card.Body>
+                                            <Card.Title>{story.title}</Card.Title>
+                                            <Card.Text>{story.description}</Card.Text>
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
+                            )}
                         </Row>
                     </Container>
                 }

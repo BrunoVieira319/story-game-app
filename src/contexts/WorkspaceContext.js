@@ -10,8 +10,13 @@ const WorkspaceProvider = component => {
     const [stories, setStories] = useState([]);
 
     useEffect( () => {
+        const CancelToken = axios.CancelToken;
+        const source = CancelToken.source();
+
         const fetchStories = async () => {
-            const response = await axios.get(`${ServiceEndpoints.STORY_SERVICE}/stories/${login.userId}`);
+            const response = await axios.get(
+                `${ServiceEndpoints.STORY_SERVICE}/stories/${login.userId}`,
+                { cancelToken: source.token });
 
             if (response.status === 200) {
                 setStories(response.data);
@@ -19,13 +24,14 @@ const WorkspaceProvider = component => {
         };
 
         fetchStories();
+        return () => {
+            source.cancel();
+        };
     }, []);
 
     return (
         <WorkspaceContext.Provider
-            value={{
-                stories
-            }}
+            value={{stories}}
         >
             {component.children}
         </WorkspaceContext.Provider>

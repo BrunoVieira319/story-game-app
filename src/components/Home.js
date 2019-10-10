@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import {Navbar, Nav} from 'react-bootstrap'
 import Workspace from "./Workspace"
 import NewStory from "./NewStory"
+import Story from "./Story"
 
 const Home = () => {
     return (
@@ -30,6 +31,7 @@ const Home = () => {
 
             <Route path="/workspace" component={Workspace}/>
             <Route path="/newStory" component={NewStory}/>
+            <Route path="/story/:id" component={Story}/>
 
             {/*<Route exact path="/home" component={}/>*/}
         </Router>
