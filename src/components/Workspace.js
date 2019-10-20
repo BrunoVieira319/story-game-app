@@ -8,7 +8,7 @@ const Workspace = () => {
         <WorkspaceProvider>
             <WorkspaceContext.Consumer>
                 {workspace =>
-                    <Container style={{'marginTop': '30px'}}>
+                    <Container>
                         <Row>
                             {workspace.stories.map((story, i) =>
                                 <Col sm={4} key={i}>

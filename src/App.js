@@ -1,4 +1,5 @@
 import React from 'react'
+import './style.css'
 import Login from './components/Login'
 import NewUser from './components/NewUser'
 import Home from './components/Home'

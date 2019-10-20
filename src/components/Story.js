@@ -1,5 +1,7 @@
 import React from "react"
-import {Container, Col, Row, Card, Modal, Button, InputGroup, FormControl} from "react-bootstrap"
+import {Link} from "react-router-dom"
+import AddActModal from "./AddActModal"
+import {Container, Col, Row, Card} from "react-bootstrap"
 import {StoryContext, StoryProvider} from "../contexts/StoryContext"
 import AddImg from "../images/add-circle-green-512.png"
 
@@ -7,63 +9,43 @@ const Story = () => (
     <StoryProvider>
         <StoryContext.Consumer>
             {story =>
-                <Container style={{'marginTop': '30px'}}>
+                <Container>
                     <Row>
                         <Col sm={3}>
-                            <Card bg="success" text="white" onClick={story.handleModal}>
+                            <Card bg="success"
+                                  text="white"
+                                  onClick={story.handleModal}
+                                  style={{cursor: 'pointer'}}>
                                 <Card.Img style={{height: '150px', objectFit: 'contain'}}
                                           variant="top"
-                                          src={AddImg} />
+                                          src={AddImg}/>
                                 <Card.Body>
-                                    <Card.Text>Add Act</Card.Text>
+                                    <Card.Title>Add Act</Card.Title>
                                 </Card.Body>
                             </Card>
                         </Col>
 
                         {story.acts.map((act, i) =>
                             <Col sm={3} key={i}>
-                                <Card bg="info" text="white">
-                                    <Card.Img style={{height: '150px', objectFit: 'cover'}}
-                                              variant="top"
-                                              src={act.cover} />
-                                    <Card.Body>
-                                        <Card.Text>{act.description}</Card.Text>
-                                    </Card.Body>
-                                </Card>
+                                <Link to={`/act/${act.id}`}>
+
+                                    <Card style={{'marginBottom': '20px'}}
+                                          bg="secondary"
+                                          text="white">
+                                        <Card.Img style={{height: '150px', objectFit: 'cover'}}
+                                                  variant="top"
+                                                  src={act.cover}/>
+
+                                        <Card.Body>
+                                            <Card.Title>{act.title}</Card.Title>
+                                        </Card.Body>
+                                    </Card>
+
+                                </Link>
                             </Col>
                         )}
 
-                        <Modal
-                            show={story.showModal}
-                            onHide={story.handleModal}
-                            size="lg"
-                        >
-                            <Modal.Header closeButton>
-                                <Modal.Title>Add Act</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <InputGroup className="mb-3">
-                                    <InputGroup.Prepend>
-                                        <InputGroup.Text>Description</InputGroup.Text>
-                                    </InputGroup.Prepend>
-                                    <FormControl as="textarea" style={{'height': '125px'}} />
-                                </InputGroup>
-                                <InputGroup className="mb-3">
-                                    <InputGroup.Prepend>
-                                        <InputGroup.Text>Cover</InputGroup.Text>
-                                    </InputGroup.Prepend>
-                                    <FormControl />
-                                </InputGroup>
-                            </Modal.Body>
-                            <Modal.Footer>
-                                <Button variant="secondary" onClick={story.handleModal}>
-                                    Close
-                                </Button>
-                                <Button variant="primary" onClick={story.handleModal}>
-                                    Save Changes
-                                </Button>
-                            </Modal.Footer>
-                        </Modal>
+                        <AddActModal context={story}/>
                     </Row>
                 </Container>
             }

@@ -12,7 +12,7 @@ const NewStory = () => {
                         <Redirect to="/workspace"/>
                     ) : (
                         <Container>
-                            <Row style={{marginTop: "25px"}}>
+                            <Row>
                                 <Col md={{span: 6, offset: 3}}>
 
                                     <Form>
