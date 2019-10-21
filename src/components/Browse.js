@@ -1,7 +1,7 @@
 import React from "react"
 import {BrowseProvider, BrowseContext} from "../contexts/BrowseContext"
-import {Container, Row, Col, CardDeck, Card} from "react-bootstrap"
-import {Link} from "react-router-dom";
+import {Container, Row, Card} from "react-bootstrap"
+import ResetLink from "./ResetLink"
 
 const Browse = () => (
     <BrowseProvider>
@@ -11,9 +11,8 @@ const Browse = () => (
                     {
                         browse.stories.map((story, i) =>
                             <Row key={i}>
-                                <Link to={`/play/${story.id}`}>
+                                <ResetLink to={`/play/${story.id}`}>
                                     <Card bg="dark"
-                                          text="white"
                                           style={{
                                               display: 'flex',
                                               flexDirection: 'row',
@@ -26,7 +25,7 @@ const Browse = () => (
                                             <Card.Text>{story.description}</Card.Text>
                                         </Card.Body>
                                     </Card>
-                                </Link>
+                                </ResetLink>
                             </Row>
                         )
                     }

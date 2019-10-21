@@ -5,7 +5,7 @@ import ServiceEndpoints from "../ServiceEndpoints"
 const LoginContext = React.createContext({});
 
 const LoginProvider = component => {
-    const [userId, setUserId] = useState("5d9a7f03f83ecb6cea8a776e");
+    const [userId, setUserId] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     const [redirect, setRedirect] = useState(false);

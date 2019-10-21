@@ -16,9 +16,11 @@ const Player = () => (
             {player =>
                 <Container>
                     <FadeDiv>
-                        <Jumbotron fluid>
+                        <Jumbotron>
                             <Col md={{span: 8, offset: 2}}>
-                                <Card style={{marginBottom: '15px'}}>
+                                <h1>{player.currentAct.title}</h1>
+
+                                <Card style={{marginBottom: '15px', background: 'lightgray'}}>
                                     <Card.Img src={player.currentAct.cover}/>
                                     <Card.Body>
                                         <Card.Text>
@@ -31,8 +33,8 @@ const Player = () => (
                                     player.currentAct.choices.map((choice, i) => (
                                         <Alert variant="primary"
                                                key={i}
-                                               onClick={() => {
-                                                   player.goToAct(choice.actId)}}
+                                               onClick={() => {player.goToAct(choice.actId)}}
+                                               style={{cursor: 'pointer'}}
                                         >
                                             {choice.description}
                                         </Alert>

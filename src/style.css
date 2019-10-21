@@ -3,4 +3,10 @@
 body {
     font-family: 'Cuprum', sans-serif;
     font-size: 120%;
+    background: powderblue;
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
 }

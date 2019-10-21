@@ -1,8 +1,9 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
-import {Form, Button, Col, Container, Row} from 'react-bootstrap'
+import {Form, Button, Col, Container, Row, Image} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {LoginContext} from "../contexts/LoginContext"
+import Cover from "../images/Elta_A.png"
 
 const Login = () => {
     return (
@@ -12,11 +13,14 @@ const Login = () => {
                     <Redirect to="/home"/>
                 ) : (
                     <Container>
-                        <Row style={{marginTop: "250px"}}>
+                        <Image src={Cover} fluid style={{background: 'powderblue'}}/>
+                        <Row style={{position: 'absolute',
+                            width: '50%',
+                            top: '250px'}}>
                             <Col md={{span: 6, offset: 3}}>
                                 <Form>
                                     <Form.Group controlId="formUser">
-                                        <Form.Label>Username</Form.Label>
+                                        <Form.Label style={{color:'white', fontWeight:'bold'}}>Username</Form.Label>
                                         <Form.Control
                                             type="text"
                                             placeholder="Enter username"
@@ -24,7 +28,7 @@ const Login = () => {
                                             onChange={login.handleUsername}/>
                                     </Form.Group>
                                     <Form.Group controlId="formPassword">
-                                        <Form.Label>Password</Form.Label>
+                                        <Form.Label style={{color:'white', fontWeight:'bold'}}>Password</Form.Label>
                                         <Form.Control
                                             type="password"
                                             placeholder="Password"
@@ -32,23 +36,16 @@ const Login = () => {
                                             onChange={login.handlePassword}/>
                                     </Form.Group>
                                 </Form>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col md={{span: 6, offset: 6}}>
-                                <Link to="/newUser">
-                                    I don't have an account
-                                </Link>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col md={{span: 6, offset: 3}}>
                                 <Button
                                     variant="primary"
                                     type="submit"
                                     onClick={login.sendCredentials}>
                                     Sign In
                                 </Button>
+                                <br/>
+                                <Link to="/newUser">
+                                    I don't have an account
+                                </Link>
                             </Col>
                         </Row>
                     </Container>
