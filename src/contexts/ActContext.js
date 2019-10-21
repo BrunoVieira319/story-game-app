@@ -18,16 +18,12 @@ const ActProvider = component => {
     const handleToAct = e => setToAct(e.target.value);
 
     const saveChoice = () => {
-        const CancelToken = axios.CancelToken;
-        const source = CancelToken.source();
-
-
-
         const choice = {
             description: choiceDescription,
             toAct,
             actId: actTitles.find(t => t.title === toAct).id
         };
+        const source = axios.CancelToken.source();
         const postChoice = async () => {
             resetModal();
             const response = await axios.post(
@@ -38,11 +34,22 @@ const ActProvider = component => {
                 setAct(response.data);
             }
         };
-
         postChoice();
-        return () => {
-            source.cancel();
+        return () => source.cancel()
+    };
+
+    const setIntro = () => {
+        const source = axios.CancelToken.source();
+        const setIntroRequest = async () => {
+            const response = await axios.patch(`${ServiceEndpoints.ACT_SERVICE}/acts/${actId}/intro`, null,
+                {cancelToken: source.token});
+
+            if (response.status === 200) {
+                setAct(response.data);
+            }
         };
+        setIntroRequest();
+        return () => source.cancel()
     };
 
     const resetModal = () => {
@@ -64,7 +71,6 @@ const ActProvider = component => {
                 fetchActTitles(response.data.storyId);
             }
         };
-
         const fetchActTitles = async (storyId) => {
             const response = await axios.get(
                 `${ServiceEndpoints.ACT_SERVICE}/acts/story/${storyId}/titles`,
@@ -74,11 +80,9 @@ const ActProvider = component => {
                 setActTitles(response.data);
             }
         };
-
         fetchAct();
-        return () => {
-            source.cancel();
-        };
+
+        return () => source.cancel()
     }, []);
 
     return (
@@ -93,7 +97,8 @@ const ActProvider = component => {
                 handleChoiceDescription,
                 toAct,
                 handleToAct,
-                saveChoice
+                saveChoice,
+                setIntro
             }}
         >
             {component.children}

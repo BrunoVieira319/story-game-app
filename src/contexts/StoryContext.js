@@ -6,7 +6,7 @@ import ServiceEndpoints from "../ServiceEndpoints"
 const StoryContext = React.createContext({});
 
 const StoryProvider = component => {
-    let {id} = useParams();
+    let {storyId} = useParams();
     const [acts, setActs] = useState([]);
     const [fetchAct, fetchActs] = useState(false);
     const [showModal, setShowModal] = useState(false);
@@ -25,7 +25,7 @@ const StoryProvider = component => {
 
         const fetchActs = async () => {
             const response = await axios.get(
-                `${ServiceEndpoints.ACT_SERVICE}/acts/story/${id}`,
+                `${ServiceEndpoints.ACT_SERVICE}/acts/story/${storyId}`,
                 {cancelToken: source.token});
 
             if (response.status === 200) {
@@ -41,7 +41,7 @@ const StoryProvider = component => {
 
     const saveAct = () => {
         const act = {
-            storyId: id,
+            storyId,
             title,
             description: actDescription,
             cover
