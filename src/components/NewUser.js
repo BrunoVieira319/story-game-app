@@ -9,7 +9,7 @@ const NewUser = () => {
             <NewUserContext.Consumer>
                 {newUser =>
                     newUser.redirect ? (
-                        <Redirect to="/home"/>
+                        <Redirect to="/"/>
                     ) : (
                         <Container>
                             < Row style={{marginTop: "250px"}}>
