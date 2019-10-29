@@ -1,0 +1,13 @@
+---
+- name: Install tools for adding PPA repositories
+  become: true
+  apt:
+    name: software-properties-common
+    state: latest
+    update_cache: yes
+
+- name: Add NodeSource key to the system
+  shell: curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+
+- name: Install Node
+  apt: nodejs

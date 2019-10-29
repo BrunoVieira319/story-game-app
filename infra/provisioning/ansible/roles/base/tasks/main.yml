@@ -1,0 +1,10 @@
+---
+- name: install git
+  apt:
+    name: git-core
+    update_cache: yes
+
+- name: install curl
+  apt:
+    name: curl
+    update_cache: yes
