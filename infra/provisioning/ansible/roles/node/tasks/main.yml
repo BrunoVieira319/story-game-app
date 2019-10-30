@@ -10,4 +10,5 @@
   shell: curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 
 - name: Install Node
-  apt: nodejs
+  apt:
+    name: nodejs

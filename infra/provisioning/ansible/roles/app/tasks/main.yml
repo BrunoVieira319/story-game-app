@@ -3,6 +3,9 @@
     repo: 'https://github.com/BrunoVieira319/story-game-app.git'
     dest: "{{ app_path }}"
 
+- name: add permission to init file
+  shell: "chmod +x {{ app_path }}/init.sh"
+
 - name: move unit file to systemd folder
   copy:
     src: /home/ubuntu/app-start.service
