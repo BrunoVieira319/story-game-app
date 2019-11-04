@@ -1,7 +1,7 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
-import {Form, Button, Col, Container, Row, Image} from 'react-bootstrap'
-import {Link} from 'react-router-dom'
+import {Form, Col, Container, Row, Image, Alert} from 'react-bootstrap'
+import ResetLink from './ResetLink'
 import {LoginContext} from "../contexts/LoginContext"
 import Cover from "../images/Elta_A.png"
 
@@ -14,13 +14,15 @@ const Login = () => {
                 ) : (
                     <Container>
                         <Image src={Cover} fluid style={{background: 'powderblue'}}/>
-                        <Row style={{position: 'absolute',
+                        <Row style={{
+                            position: 'absolute',
                             width: '50%',
-                            top: '250px'}}>
+                            top: '250px'
+                        }}>
                             <Col md={{span: 6, offset: 3}}>
                                 <Form>
                                     <Form.Group controlId="formUser">
-                                        <Form.Label style={{color:'white', fontWeight:'bold'}}>Username</Form.Label>
+                                        <Form.Label style={{color: 'white', fontWeight: 'bold'}}>Username</Form.Label>
                                         <Form.Control
                                             type="text"
                                             placeholder="Enter username"
@@ -28,7 +30,7 @@ const Login = () => {
                                             onChange={login.handleUsername}/>
                                     </Form.Group>
                                     <Form.Group controlId="formPassword">
-                                        <Form.Label style={{color:'white', fontWeight:'bold'}}>Password</Form.Label>
+                                        <Form.Label style={{color: 'white', fontWeight: 'bold'}}>Password</Form.Label>
                                         <Form.Control
                                             type="password"
                                             placeholder="Password"
@@ -36,16 +38,17 @@ const Login = () => {
                                             onChange={login.handlePassword}/>
                                     </Form.Group>
                                 </Form>
-                                <Button
-                                    variant="primary"
-                                    type="submit"
-                                    onClick={login.sendCredentials}>
+                                <Alert variant="success"
+                                       onClick={login.sendCredentials}
+                                       style={{cursor: 'pointer', marginTop: '30px'}}
+                                >
                                     Sign In
-                                </Button>
-                                <br/>
-                                <Link to="/newUser">
-                                    I don't have an account
-                                </Link>
+                                </Alert>
+                                <ResetLink to="/newUser" style={{color: 'black'}}>
+                                    <Alert variant="dark">
+                                        I don't have an account
+                                    </Alert>
+                                </ResetLink>
                             </Col>
                         </Row>
                     </Container>

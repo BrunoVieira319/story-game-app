@@ -46,6 +46,9 @@ const StoryProvider = component => {
             description: actDescription,
             cover
         };
+        if (acts.length === 0) {
+            act.intro = true;
+        }
         axios.post(`${ServiceEndpoints.ACT_SERVICE}/acts`, act)
             .then(response => {
                 if (response.status === 201) {
