@@ -6,7 +6,7 @@ import {GiPlayButton} from "react-icons/gi"
 import AddChoiceModal from "./AddChoiceModal"
 
 const ActCard = props => (
-    <Card bg={props.color} text="white">
+    <Card bg={props.color}>
         <Card.Img style={{height: '150px', objectFit: 'cover'}}
                   src={props.act.cover}/>
         <Card.Body>
@@ -28,7 +28,7 @@ const Act = () => (
                             ) : (
                                 <ActCard color="dark" act={actContext.act}/>
                             )}
-                            <Alert variant="info"
+                            <Alert variant="light"
                                    style={{textAlign: 'center', cursor: 'pointer', marginTop: '15px'}}
                                    onClick={actContext.setIntro}>
                                 Set this scene as introduction <GiPlayButton/>

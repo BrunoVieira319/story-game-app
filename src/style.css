@@ -3,10 +3,19 @@
 body {
     font-family: 'Cuprum', sans-serif;
     font-size: 120%;
-    background: powderblue;
+    background: #d2e8ff;
+    color: #d8e2e8;
 }
 
 html, body {
     margin: 0;
     height: 100%;
+}
+
+p {
+    white-space: pre-line;
+}
+
+.bg-dark {
+    background-color: #1a3240 !important;
 }

@@ -8,7 +8,7 @@ const StyledLink = styled(Link)`
 
     &:focus, &:hover, &:visited, &:link, &:active {
         text-decoration: none;
-        color: white;
+        color: #d8e2e8;
     }
 `;
 

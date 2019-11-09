@@ -5,6 +5,22 @@ import ResetLink from './ResetLink'
 import {LoginContext} from "../contexts/LoginContext"
 import Cover from "../images/Elta_A.png"
 
+const coverImageStyle = {
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    right: '0',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    background: '#d2e8ff',
+    maxWidth: '100%',
+    height: 'auto'
+};
+
+const formRowStyle = {
+    marginTop: window.innerWidth < 768 ? '50px' : '200px'
+};
+
 const Login = () => {
     return (
         <LoginContext.Consumer>
@@ -13,13 +29,9 @@ const Login = () => {
                     <Redirect to="/home"/>
                 ) : (
                     <Container>
-                        <Image src={Cover} fluid style={{background: 'powderblue'}}/>
-                        <Row style={{
-                            position: 'absolute',
-                            width: '50%',
-                            top: '250px'
-                        }}>
-                            <Col md={{span: 6, offset: 3}}>
+                        <Image src={Cover} style={coverImageStyle}/>
+                        <Row style={formRowStyle}>
+                            <Col md={{span: 4, offset: 4}}>
                                 <Form>
                                     <Form.Group controlId="formUser">
                                         <Form.Label style={{color: 'white', fontWeight: 'bold'}}>Username</Form.Label>

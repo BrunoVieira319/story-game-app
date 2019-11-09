@@ -10,18 +10,34 @@ const FadeDiv = styled.div`
   animation: 1s ${fadeAnimation};
 `;
 
+const cardStyle = {
+    background: '#3b4550',
+    marginBottom: '15px'
+};
+
+const jumbotronStyle = {
+    background: '#132538',
+    borderRadius: '.15rem',
+    paddingRight: '0',
+    paddingLeft: '0'
+};
+
 const Player = () => (
     <PlayerProvider>
         <PlayerContext.Consumer>
             {player =>
                 <Container>
                     <FadeDiv>
-                        <Jumbotron>
+                        <Jumbotron style={jumbotronStyle}>
                             <Col md={{span: 8, offset: 2}}>
-                                <h1>{player.currentAct.title}</h1>
 
-                                <Card style={{marginBottom: '15px', background: 'lightgray'}}>
-                                    <Card.Img src={player.currentAct.cover}/>
+                                <h1 style={{color: '#d9e3ee'}}>
+                                    {player.currentAct.title}
+                                </h1>
+
+                                <Card style={cardStyle}>
+                                    <Card.Img style={{maxHeight: '350px', objectFit: 'cover'}}
+                                              src={player.currentAct.cover}/>
                                     <Card.Body>
                                         <Card.Text>
                                             {player.currentAct.description}
@@ -31,7 +47,7 @@ const Player = () => (
                                 {
                                     player.currentAct.choices !== undefined &&
                                     player.currentAct.choices.map((choice, i) => (
-                                        <Alert variant="primary"
+                                        <Alert variant="info"
                                                key={i}
                                                onClick={() => {player.goToAct(choice.actId)}}
                                                style={{cursor: 'pointer'}}

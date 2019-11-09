@@ -11,7 +11,8 @@ const PlayerProvider = props => {
     const [currentAct, setCurrentAct] = useState({});
 
     const goToAct = actId => {
-        setCurrentAct(acts.find(a => a.id === actId))
+        setCurrentAct(acts.find(a => a.id === actId));
+        window.scrollTo({behavior: "smooth", top: 0});
     };
 
     useEffect(() => {

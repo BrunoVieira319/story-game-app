@@ -1,6 +1,6 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
-import {Container, Col, Row, Form, Button, Jumbotron} from 'react-bootstrap'
+import {Container, Col, Form, Button, Jumbotron} from 'react-bootstrap'
 import {NewStoryContext, NewStoryProvider} from '../contexts/NewStoryContext'
 
 const NewStory = () => {
@@ -12,7 +12,7 @@ const NewStory = () => {
                         <Redirect to="/workspace"/>
                     ) : (
                         <Container>
-                            <Jumbotron fluid>
+                            <Jumbotron fluid style={{color: '#111'}}>
                                 <Col md={{span: 6, offset: 3}}>
 
                                     <Form>

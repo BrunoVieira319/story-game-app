@@ -1,9 +1,16 @@
 import React from "react"
-import {Link} from "react-router-dom"
+import ResetLink from "./ResetLink";
 import AddActModal from "./AddActModal"
 import {Container, Col, Row, Card} from "react-bootstrap"
 import {StoryContext, StoryProvider} from "../contexts/StoryContext"
 import AddImg from "../images/add-circle-green-512.png"
+
+const cardStyle = {
+    background: '#0c2029',
+    cursor: 'pointer',
+    marginBottom: '20px',
+    borderRadius: '.10rem'
+};
 
 const Story = () => (
     <StoryProvider>
@@ -15,7 +22,7 @@ const Story = () => (
                             <Card bg="success"
                                   text="white"
                                   onClick={story.handleModal}
-                                  style={{cursor: 'pointer'}}>
+                                  style={cardStyle}>
                                 <Card.Img style={{height: '150px', objectFit: 'contain'}}
                                           variant="top"
                                           src={AddImg}/>
@@ -27,10 +34,9 @@ const Story = () => (
 
                         {story.acts.map((act, i) =>
                             <Col sm={3} key={i}>
-                                <Link to={`/act/${act.id}`}>
+                                <ResetLink to={`/act/${act.id}`}>
 
-                                    <Card style={{'marginBottom': '20px'}}
-                                          bg="secondary"
+                                    <Card style={cardStyle}
                                           text="white">
                                         <Card.Img style={{height: '150px', objectFit: 'cover'}}
                                                   variant="top"
@@ -41,7 +47,7 @@ const Story = () => (
                                         </Card.Body>
                                     </Card>
 
-                                </Link>
+                                </ResetLink>
                             </Col>
                         )}
 

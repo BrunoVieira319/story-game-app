@@ -12,7 +12,7 @@ const NewUser = () => {
                         <Redirect to="/"/>
                     ) : (
                         <Container>
-                            < Row style={{marginTop: "250px"}}>
+                            <Row style={{marginTop: "250px", color: '#111'}}>
                                 <Col md={{span: 6, offset: 3}}>
                                     <Form>
                                         <Form.Group controlId="formUser">
