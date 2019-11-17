@@ -12,7 +12,7 @@ const coverImageStyle = {
     right: '0',
     marginLeft: 'auto',
     marginRight: 'auto',
-    background: '#d2e8ff',
+    background: '#deefff',
     maxWidth: '100%',
     height: 'auto'
 };

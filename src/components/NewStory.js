@@ -12,7 +12,7 @@ const NewStory = () => {
                         <Redirect to="/workspace"/>
                     ) : (
                         <Container>
-                            <Jumbotron fluid style={{color: '#111'}}>
+                            <Jumbotron fluid style={{color: '#111', background: '#8fb5c1'}}>
                                 <Col md={{span: 6, offset: 3}}>
 
                                     <Form>
